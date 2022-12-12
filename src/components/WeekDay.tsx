@@ -1,8 +1,9 @@
 import React, {FC, useEffect, useState} from 'react';
 import styles from "../styles/MonthLayout.module.css";
 import Day from "./Day";
-import {months, useGetDaysOfWeek} from "../utils/utils";
+import {months} from "../utils/utils";
 import {IDate, IDay} from "../models/models";
+
 interface WeekDayProps {
     numberDayOfWeek: number;
     nameDayOfWeek: string;
