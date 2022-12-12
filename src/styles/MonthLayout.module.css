@@ -1,0 +1,15 @@
+.days__wrapper {
+    width: 100%;
+    display: flex;
+
+
+}
+.week__day__wrapper {
+    display: flex;
+}
+.week__day {
+    width: 150px;
+    text-align: left;
+    font-size: 20px;
+    color: green;
+}
