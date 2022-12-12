@@ -1,0 +1,59 @@
+.modal__wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, 0.4);
+    font-family: "Microsoft Sans Serif";
+}
+.modal__content {
+    width: 600px;
+    height: 300px;
+    background-color: white;
+    margin: 100px auto 0;
+    border-radius: 25px;
+}
+.modal__content span {
+    display: block;
+    text-align: right;
+    margin-right: 10px;
+    font-size: 20px;
+    color: red;
+    cursor: pointer;
+    font-family: "Yu Gothic UI Semibold";
+}
+.modal__form {
+padding-top: 5px;
+}
+.modal__form h1 {
+    text-align: center;
+    font-size: 30px;
+}
+.modal__form input {
+    display: block;
+    width: 80%;
+    height: 30px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid black;
+    margin: 0 auto 10px;
+    padding-left: 20px;
+}
+.modal__form button {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 30px;
+    padding: 3px;
+}
+.access {
+    margin: 50px auto 0;
+    text-align: center;
+    font-style: italic;
+}

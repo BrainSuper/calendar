@@ -1,0 +1,8 @@
+.day__wrapper {
+    box-sizing: border-box;
+    width: inherit;
+    height: 75px;
+    background-color: black;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+}
