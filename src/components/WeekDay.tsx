@@ -12,9 +12,10 @@ interface WeekDayProps {
     monthDays: IDay[];
     setMonthDays: (days: IDay[]) => void;
     monthDaysWithActivities: IDay[];
+    setMonthDaysWithActivities: (monthDaysWithActivities: IDay[]) => void;
 }
 
-const WeekDay: FC<WeekDayProps> = ({numberDayOfWeek, nameDayOfWeek, date, setDate, monthDays, setMonthDays, monthDaysWithActivities}) => {
+const WeekDay: FC<WeekDayProps> = ({numberDayOfWeek, nameDayOfWeek, date, setDate, monthDays, setMonthDays, monthDaysWithActivities, setMonthDaysWithActivities}) => {
     const [daysOfWeek, setDaysOfWeek] = useState<number[]>([])
 
 
@@ -42,9 +43,9 @@ const WeekDay: FC<WeekDayProps> = ({numberDayOfWeek, nameDayOfWeek, date, setDat
             {nameDayOfWeek}
             {daysOfWeek.map((day, i) => {
                 if (i === 0 && day > numberDayOfWeek && numberDayOfWeek !== 0) {
-                    return <><Day key={Math.random()}/><Day key={day} monthDaysWithActivities={monthDaysWithActivities} day={monthDays[day - 1]}/></>
+                    return <><Day key={Math.random()}/><Day setMonthDaysWithActivities={setMonthDaysWithActivities} key={day} monthDaysWithActivities={monthDaysWithActivities} day={monthDays[day - 1]}/></>
                 }
-                return <Day key={day} monthDaysWithActivities={monthDaysWithActivities} day={monthDays[day - 1]}/>
+                return <Day setMonthDaysWithActivities={setMonthDaysWithActivities} key={day} monthDaysWithActivities={monthDaysWithActivities} day={monthDays[day - 1]}/>
             })}
         </div>
     );

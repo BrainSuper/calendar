@@ -1,8 +1,52 @@
 .day__wrapper {
+    position: relative;
     box-sizing: border-box;
     width: inherit;
     height: 75px;
     background-color: black;
     border-right: 1px solid white;
     border-bottom: 1px solid white;
+    color: white;
+    padding: 5px 0 0 5px;
+}
+
+.activitie {
+    font-size: 10px;
+    color: #fff7cb;
+    margin-top: 3px;
+}
+
+.show__more {
+    font-size: 15px;
+    cursor: pointer;
+    color: white;
+
+}
+
+.show__more__menu {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff7cb;
+    top: 100%;
+    left: -100%;
+    z-index: 3;
+    width: 400px;
+    min-height: 150px;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.show__more__menu div {
+    font-family: "Microsoft Sans Serif";
+    width: 400px;
+    word-break: break-all;
+    color: black;
+    font-size: 20px;
+    margin-top: 10px;
+}
+.delete {
+    color: red;
+    margin-right: 10px;
+    cursor: pointer;
 }

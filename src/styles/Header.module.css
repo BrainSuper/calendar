@@ -10,7 +10,7 @@
 .month {
     margin: 0 auto;
     font-size: 30px;
-    color: red;
+    color: white;
 }
 .task__button {
     width: 220px;
@@ -46,5 +46,5 @@
     outline: none;
     height: 50px;
     font-size: 25px;
-    color: green;
+    color: black;
 }

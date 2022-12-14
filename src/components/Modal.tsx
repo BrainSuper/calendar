@@ -13,31 +13,65 @@ interface ModalProps {
     setMonthDaysWithActivities: (monthDaysWithActivities: IDay[]) => void;
 }
 
-const Modal:FC<ModalProps> = ({chosenDate, setChosenDate, setModal, modal, monthDays, setMonthDaysWithActivities, monthDaysWithActivities}) => {
+const Modal: FC<ModalProps> = ({chosenDate, setChosenDate, setModal, modal, monthDays, setMonthDaysWithActivities, monthDaysWithActivities}) => {
     const yearRange = getYearRange(2000, 2023);
     const [activitie, setActivitie] = useState<string>('');
 
     const checkDaysWithActivities = () => {
-        const newDaysWithActivities: IDay = {day: chosenDate.day, month: chosenDate.month, year: chosenDate.year, activities: [activitie]};
-        if (monthDaysWithActivities.length > 0) {
-            for (let i = 0; i < monthDaysWithActivities.length; i++) {
-                if (monthDaysWithActivities[i].day === chosenDate.day && monthDaysWithActivities[i].year === chosenDate.year && monthDaysWithActivities[i].month === chosenDate.month) {
-                    console.log('start')
-                    let newAct: string[] = monthDaysWithActivities[i].activities;
-                    newAct.push(activitie);
-                    setMonthDaysWithActivities(monthDaysWithActivities.map(day => {
-                        if (day.year === monthDaysWithActivities[i].year && day.day === monthDaysWithActivities[i].day && day.month === monthDaysWithActivities[i].month) {
-                            return {...day, activities: newAct}
-                        } return day;
-                    }))
-                    console.log('end')
-                } else setMonthDaysWithActivities([...monthDaysWithActivities, newDaysWithActivities])
-            }
 
-        } else if (monthDaysWithActivities.length === 0) {
-            console.log('here')
+        if (monthDaysWithActivities.length > 0) {
+
+            let findedDay = monthDaysWithActivities.find(day => day.year === chosenDate.year && day.day === chosenDate.day && day.month === chosenDate.month);
+            if (findedDay) {
+                setMonthDaysWithActivities(monthDaysWithActivities.map(day => {
+                    if (day === findedDay) {
+                        return {...day, activities: [...day.activities, activitie]};
+                    }
+                    return {...day};
+                }))
+            } else if (findedDay === undefined) {
+                const newDaysWithActivities: IDay = {
+                    day: chosenDate.day,
+                    month: chosenDate.month,
+                    year: chosenDate.year,
+                    activities: [activitie]
+                };
+                setMonthDaysWithActivities([...monthDaysWithActivities, newDaysWithActivities]) }
+            // Реалізація через цикл ......
+            // for (let i = 0; i < monthDaysWithActivities.length; i++) {
+            //     if (monthDaysWithActivities[i].day === chosenDate.day && monthDaysWithActivities[i].year === chosenDate.year && monthDaysWithActivities[i].month === chosenDate.month) {
+            //         console.log('start')
+            //         let newAct: string[] = monthDaysWithActivities[i].activities;
+            //         newAct.push(activitie);
+            //         setMonthDaysWithActivities(monthDaysWithActivities.map(day => {
+            //             if (day.year === monthDaysWithActivities[i].year && day.day === monthDaysWithActivities[i].day && day.month === monthDaysWithActivities[i].month) {
+            //                 // debugger;
+            //                 return {...day, activities: [...newAct]};
+            //             } return {...day};
+            //         }))
+            //         break;
+            //         console.log('end')
+            //     } else {
+            //                 console.log('here')
+            //                 const newDaysWithActivities: IDay = {day: chosenDate.day, month: chosenDate.month, year: chosenDate.year, activities: [activitie]};
+            //                 setMonthDaysWithActivities([...monthDaysWithActivities, newDaysWithActivities])
+            //
+            //         }
+            //
+            // }
+        //    ................................
+
+        } else if (monthDaysWithActivities && monthDaysWithActivities.length === 0) {
+                console.log('hello')
+            const newDaysWithActivities: IDay = {
+                day: chosenDate.day,
+                month: chosenDate.month,
+                year: chosenDate.year,
+                activities: [activitie]
+            };
             setMonthDaysWithActivities([...monthDaysWithActivities, newDaysWithActivities])
         }
+
 
     }
     return (
@@ -51,7 +85,8 @@ const Modal:FC<ModalProps> = ({chosenDate, setChosenDate, setModal, modal, month
                     checkDaysWithActivities();
                 }}>
                     <h1>Type your tasks</h1>
-                    <input value={activitie} onChange={(e) => setActivitie(e.target.value)} type="text" placeholder={'your task'}/>
+                    <input value={activitie} onChange={(e) => setActivitie(e.target.value)} type="text"
+                           placeholder={'your task'}/>
                     <select onChange={(e) => setChosenDate({...chosenDate, year: +e.target.value})}>
                         {yearRange.map(year => <option key={year} value={year}>{year}</option>)}
                     </select>
