@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import styles from '../styles/Day.module.css';
 import {IDay} from "../models/models";
 interface DaysProps {
@@ -8,6 +8,7 @@ interface DaysProps {
 }
 const Day: FC<DaysProps> = ({day, monthDaysWithActivities, setMonthDaysWithActivities}) => {
     const [showMore, setShowMore] = useState(false);
+
     if (monthDaysWithActivities && monthDaysWithActivities.length !== 0) {
         for (let i = 0; i < monthDaysWithActivities.length; i++) {
             if (day?.day === monthDaysWithActivities[i].day && day.year === monthDaysWithActivities[i].year && day.month === monthDaysWithActivities[i].month) {
@@ -19,11 +20,13 @@ const Day: FC<DaysProps> = ({day, monthDaysWithActivities, setMonthDaysWithActiv
                                 return <div className={styles.show__more} onClick={() => setShowMore(prevState => !prevState)}>{showMore ? 'Hide' : 'Show more...'}</div>
                             } else if (i > 2) return;
 
-                            return <div className={styles.activitie} key={activitie}>{activitie.length > 30 ? activitie.slice(0, 30) + '...': activitie}</div>
+                            return <div className={styles.activitie} key={activitie}>{activitie.length > 25 ? activitie.slice(0, 25) + '...': activitie}</div>
                         })}
                         {showMore && <div className={styles.show__more__menu}>
+                            {monthDaysWithActivities[i].activities.length <= 2 && <span className={styles.close__button} onClick={() => setShowMore(prevState => !prevState)}>close</span>}
                             {monthDaysWithActivities[i].activities.map((activitie, index) => {
-                                return <div><span><span className={styles.delete} onClick={() => {
+                                return <div>
+                                    <span><span className={styles.delete} onClick={() => {
                                     if (setMonthDaysWithActivities !== undefined) {
                                         setMonthDaysWithActivities(monthDaysWithActivities.map(day => {
                                             if (day === monthDaysWithActivities[i]) {
@@ -31,7 +34,7 @@ const Day: FC<DaysProps> = ({day, monthDaysWithActivities, setMonthDaysWithActiv
                                                     // setMonthDaysWithActivities(monthDaysWithActivities?.filter(dayWithAc => dayWithAc !== monthDaysWithActivities[i]));
                                                     setShowMore(prevState => !prevState)
                                                 };
-                                                return {...day, activities: day.activities.filter(act => act !== activitie)}
+                                                return {...day, activities: [...day.activities.filter(act => act !== activitie)]}
                                             } return {...day};
                                         }))
                                     }

@@ -50,3 +50,13 @@
     margin-right: 10px;
     cursor: pointer;
 }
+.close__button {
+    display: block;
+    width: 100%;
+    text-align: right;
+    margin-right: 10px;
+    font-size: 20px;
+    color: red;
+    cursor: pointer;
+    font-family: "Yu Gothic UI Semibold";
+}

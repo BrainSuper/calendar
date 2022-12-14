@@ -14,7 +14,7 @@ interface ModalProps {
 }
 
 const Modal: FC<ModalProps> = ({chosenDate, setChosenDate, setModal, modal, monthDays, setMonthDaysWithActivities, monthDaysWithActivities}) => {
-    const yearRange = getYearRange(2000, 2023);
+    const yearRange = getYearRange(2022, 2025);
     const [activitie, setActivitie] = useState<string>('');
 
     const checkDaysWithActivities = () => {
